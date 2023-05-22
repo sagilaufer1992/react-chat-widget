@@ -21,7 +21,8 @@ export function createNewMessage(
     timestamp: new Date(),
     showAvatar: true,
     customId: id,
-    unread: sender === MESSAGE_SENDER.RESPONSE
+    unread: sender === MESSAGE_SENDER.RESPONSE,
+    isLast: true
   };
 }
 

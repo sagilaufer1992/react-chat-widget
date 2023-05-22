@@ -5,6 +5,8 @@ import markdownItSanitizer from 'markdown-it-sanitizer';
 import markdownItClass from '@toycode/markdown-it-class';
 import markdownItLinkAttributes from 'markdown-it-link-attributes';
 
+import { TypeAnimation } from 'react-type-animation'
+
 import { MessageTypes } from 'src/store/types';
 
 import './styles.scss';
@@ -26,7 +28,13 @@ function Message({ message, showTimeStamp }: Props) {
 
   return (
     <div className={`rcw-${message.sender}`}>
-      <div className="rcw-message-text" dangerouslySetInnerHTML={{ __html: sanitizedHTML.replace(/\n$/,'') }} />
+        {message.sender === 'response'  && message.isLast ?
+          <div className="rcw-message-text">
+              <TypeAnimation sequence={[message.text] } cursor={true}></TypeAnimation>
+          </div>
+          :
+          <div className="rcw-message-text" dangerouslySetInnerHTML={{ __html: sanitizedHTML.replace(/\n$/,'') }} />
+        }
       {showTimeStamp && <span className="rcw-timestamp">{format(message.timestamp, 'hh:mm')}</span>}
     </div>
   );
