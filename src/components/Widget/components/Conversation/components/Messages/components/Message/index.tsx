@@ -30,7 +30,7 @@ function Message({ message, showTimeStamp }: Props) {
     <div className={`rcw-${message.sender}`}>
         {message.sender === 'response'  && message.isLast ?
           <div className="rcw-message-text">
-              <TypeAnimation sequence={[message.text] } cursor={true}></TypeAnimation>
+              <TypeAnimation sequence={[message.text] } cursor={true} speed={99}></TypeAnimation>
           </div>
           :
           <div className="rcw-message-text" dangerouslySetInnerHTML={{ __html: sanitizedHTML.replace(/\n$/,'') }} />
